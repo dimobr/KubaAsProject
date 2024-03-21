@@ -7,8 +7,9 @@ namespace KubaAsProject.Repository
     {
         Task<TEntity> GetByIdAsync(int id);
         Task AddAsync(TEntity entity);
-        Task<TEntity> UpdateAsync(TEntity entity);
-        Task<TEntity> DeleteAsync(TEntity entity);
+        Task UpdateAsync(TEntity entity);
+        Task DeleteAsync(TEntity entity);
         Task DeleteByIdAsync(int id);
+        Task<IQueryable<TEntity>> GetAllAsync();    
     }
 }

@@ -25,20 +25,17 @@ namespace KubaAsProject.Repository
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<TEntity> UpdateAsync(TEntity entity)
+        public async Task UpdateAsync(TEntity entity)
         {
             _dbContext.Set<TEntity>().Update(entity);
             await _dbContext.SaveChangesAsync();
-
-            return entity;
         }
 
-        public async Task<TEntity> DeleteAsync(TEntity entity)
+        public async Task DeleteAsync(TEntity entity)
         {
             _dbContext.Set<TEntity>().Remove(entity);
             await _dbContext.SaveChangesAsync();
 
-            return entity;
         }
 
         public async Task DeleteByIdAsync(int id)
@@ -50,5 +47,11 @@ namespace KubaAsProject.Repository
             }
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task<IQueryable<TEntity>> GetAllAsync()
+        {
+            return await Task.FromResult(_dbContext.Set<TEntity>().AsQueryable());
+        }
+
     }
 }
