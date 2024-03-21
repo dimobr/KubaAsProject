@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 using KubaAsProject.AppDatabaseContext;
 using KubaAsProject.Repository;
 using KubaAsProject.Services;
@@ -23,6 +24,8 @@ builder.Services.AddScoped<IInventoryService, InventoryService>();
 builder.Services.AddScoped<IItemService, ItemService>();
 builder.Services.AddScoped<IWarehouseOwnerService, WarehouseOwnerService>();
 builder.Services.AddScoped<IWarehouseService, WarehouseService>();
+
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 var app = builder.Build();
 
