@@ -1,6 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 using KubaAsProject.AppDatabaseContext;
 using KubaAsProject.Repository;
-using Microsoft.EntityFrameworkCore;
+using KubaAsProject.Services;
+using KubaAsProject.Services.Implementations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +19,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+builder.Services.AddScoped<IInventoryService, InventoryService>();
+builder.Services.AddScoped<IItemService, ItemService>();
+builder.Services.AddScoped<IWarehouseOwnerService, WarehouseOwnerService>();
+builder.Services.AddScoped<IWarehouseService, WarehouseService>();
+
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 var app = builder.Build();
 
