@@ -6,6 +6,8 @@ using KubaAsProject.Services;
 
 namespace KubaAsProject.Controllers.API
 {
+    [ApiController]
+    [Route("api/{controller}")]
     public class WarehouseOwnerController : ControllerBase
     {
         private readonly IWarehouseOwnerService _warehouseOwnerService;
