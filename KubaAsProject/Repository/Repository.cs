@@ -7,10 +7,17 @@ namespace KubaAsProject.Repository
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
     {
         private readonly AppDbContext _dbContext;
+        private readonly DbSet<TEntity> _dbSet;
 
         public Repository(AppDbContext dbContext) 
         {
             _dbContext = dbContext;
+            _dbSet = dbContext.Set<TEntity>();
+        }
+
+        public async Task<IList<TEntity>> GetAll()
+        {
+            return await _dbSet.ToListAsync();
         }
 
         public async Task<TEntity> GetByIdAsync(int id)
