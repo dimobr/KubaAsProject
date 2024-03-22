@@ -44,7 +44,7 @@ namespace KubaAsProject.Controllers.API
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateNewWarehouse(WarehouseDto warehouseToAdd)
+        public async Task<IActionResult> CreateNewWarehouse([FromBody] WarehouseDto warehouseToAdd)
         {
             if (warehouseToAdd is null)
             {
@@ -58,7 +58,7 @@ namespace KubaAsProject.Controllers.API
 
 
         [HttpPut]
-        public async Task<IActionResult> UpdateWarehouse(WarehouseDto warehouseToUpdate)
+        public async Task<IActionResult> UpdateWarehouse([FromBody] WarehouseDto warehouseToUpdate)
         {
             if (warehouseToUpdate is not null)
             {

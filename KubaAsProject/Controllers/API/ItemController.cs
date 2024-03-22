@@ -44,7 +44,7 @@ namespace KubaAsProject.Controllers.API
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateItem(ItemDto itemToAdd)
+        public async Task<IActionResult> CreateItem([FromBody] ItemDto itemToAdd)
         {
             if (itemToAdd is null)
             {
@@ -58,7 +58,7 @@ namespace KubaAsProject.Controllers.API
 
 
         [HttpPut]
-        public async Task<IActionResult> UpdateItem(ItemDto itemToUpdate)
+        public async Task<IActionResult> UpdateItem([FromBody] ItemDto itemToUpdate)
         {
             if (itemToUpdate is not null)
             {

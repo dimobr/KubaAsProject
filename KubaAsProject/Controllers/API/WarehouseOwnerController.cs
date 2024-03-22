@@ -23,7 +23,7 @@ namespace KubaAsProject.Controllers.API
             _autoMapper = autoMapper;
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("getOwner/{id}")]
         public async Task<IActionResult> GetWarehouseOwner(int id)
         {
             try
@@ -43,8 +43,8 @@ namespace KubaAsProject.Controllers.API
             }
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AddWarehouseOwner(WarehouseOwnerDto ownerToAdd)
+        [HttpPost("addOwner")]
+        public async Task<IActionResult> AddWarehouseOwner([FromBody] WarehouseOwnerDto ownerToAdd)
         {
             if (ownerToAdd is null)
             {
@@ -58,7 +58,7 @@ namespace KubaAsProject.Controllers.API
 
 
         [HttpPut]
-        public async Task<IActionResult> UpdateWarehouse(WarehouseOwnerDto ownerToUpdate)
+        public async Task<IActionResult> UpdateWarehouse([FromBody] WarehouseOwnerDto ownerToUpdate)
         {
             if (ownerToUpdate is not null)
             {

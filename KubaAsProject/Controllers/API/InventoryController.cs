@@ -44,7 +44,7 @@ namespace KubaAsProject.Controllers.API
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateNewInventory(InventoryDto inventoryToAdd)
+        public async Task<IActionResult> CreateNewInventory([FromBody] InventoryDto inventoryToAdd)
         {
             if (inventoryToAdd is null)
             {
@@ -58,7 +58,7 @@ namespace KubaAsProject.Controllers.API
 
 
         [HttpPut]
-        public async Task<IActionResult> UpdateInventory(InventoryDto inventoryToUpdate)
+        public async Task<IActionResult> UpdateInventory([FromBody] InventoryDto inventoryToUpdate)
         {
             if (IsValidValue(inventoryToUpdate)) 
             {
