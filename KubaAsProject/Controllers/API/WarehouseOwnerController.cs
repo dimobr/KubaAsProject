@@ -3,6 +3,7 @@ using AutoMapper;
 using KubaAsProject.Models;
 using KubaAsProject.Models.DtoModels;
 using KubaAsProject.Services;
+using KubaAsProject.Services.Implementations;
 
 namespace KubaAsProject.Controllers.API
 {
@@ -21,6 +22,44 @@ namespace KubaAsProject.Controllers.API
             _warehouseOwnerService = warehouseOwnerService;
             _logger = logger;
             _autoMapper = autoMapper;
+        }
+
+        [HttpGet("getAllOwners")]
+        public async Task<IActionResult> GetAllOwners()
+        {
+            try
+            {
+                var owners = await _warehouseOwnerService.GetAllOwners();
+                if (owners is null)
+                {
+                    return NotFound();
+                }
+
+                List<WarehouseOwnerDto> warehouseOwners = new();
+                foreach (var owner in owners)
+                {
+                    warehouseOwners.Add(new WarehouseOwnerDto() 
+                    {
+                        Name = owner.Name,
+                        City = owner.City,  
+                        ContactPerson = owner.ContactPerson,    
+                        IsBusiness = owner.IsBusiness ?? false,
+                        Country = owner.Country,    
+                        PhoneNumber = owner.PhoneNumber, 
+                        PostalCode = owner.PostalCode,  
+                        EmailAddress = owner.EmailAddress,
+                        Region = owner.Region,
+                        Street = owner.Street            
+                    });
+                }
+
+                return Ok(warehouseOwners);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest();
+            }
         }
 
         [HttpGet("getOwner/{id}")]

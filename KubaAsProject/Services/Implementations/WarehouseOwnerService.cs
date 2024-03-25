@@ -12,6 +12,11 @@ namespace KubaAsProject.Services.Implementations
             _warehouseOwnerRepository = warehouseOwnerRepository;
         }
 
+        public async Task<IList<WarehouseOwner>> GetAllOwners()
+        {
+            return await _warehouseOwnerRepository.GetAll();
+        }
+
         public async Task<WarehouseOwner> GetWarehouseOwnerByIdAsync(int id)
         {
             return await _warehouseOwnerRepository.GetByIdAsync(id);
