@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using AutoMapper;
 using KubaAsProject.AppDatabaseContext;
 using KubaAsProject.Repository;
 using KubaAsProject.Services;
